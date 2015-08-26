@@ -10,4 +10,6 @@ public class VlcPlayer implements AdvancedMediaPlayer{
 	   public void playMp4(String fileName) {
 	      //do nothing
 	   }
+	   
+	   // i made a quick fix here, because CEO wanted..
 	}
