@@ -6,5 +6,4 @@ public interface AdvancedMediaPlayer {
   public void playMp4(String fileName);
   // this is a comment because of reasons
 
-  // does Git work with RTC?
 }
