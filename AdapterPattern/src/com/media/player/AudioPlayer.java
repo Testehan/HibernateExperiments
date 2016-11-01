@@ -1,6 +1,6 @@
 package com.media.player;
 
-public class AudioPlayer implements MediaPlayer {
+public class AudioPlayer implements IMediaPlayer {
 	   MediaAdapter mediaAdapter; 
 
 	   @Override

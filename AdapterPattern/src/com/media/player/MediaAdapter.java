@@ -1,12 +1,12 @@
 package com.media.player;
 
-import com.advanced.media.players.AdvancedMediaPlayer;
+import com.advanced.media.players.IAdvancedMediaPlayer;
 import com.advanced.media.players.Mp4Player;
 import com.advanced.media.players.VlcPlayer;
 
-public class MediaAdapter implements MediaPlayer {
+public class MediaAdapter implements IMediaPlayer {
 
-	   AdvancedMediaPlayer advancedMusicPlayer;
+	   IAdvancedMediaPlayer advancedMusicPlayer;
 
 	   public MediaAdapter(String audioType){
 	   
