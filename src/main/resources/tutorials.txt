@@ -1,0 +1,23 @@
+Hibernate Tutorial - Telusko
+https://www.youtube.com/watch?v=PMR0ld5h938&list=PLsyeobzWxl7qBZtsEvp_n2A7sJs2MpF3r
+
+
+
+Entire documentation of hibernate 5.6.12
+https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/
+
+        fetch - FetchType (defaults to EAGER)
+        Defines whether this attribute should be fetched eagerly or lazily. JPA says that EAGER is a requirement to the
+        provider (Hibernate) that the value should be fetched when the owner is fetched, while LAZY is merely a hint that
+        the value is fetched when the attribute is accessed.
+
+        The Hibernate recommendation is to statically mark all associations lazy and to use dynamic fetching strategies
+        for eagerness. (me as I am using only hibernate related classes, I get this behaviour even for )
+        This is unfortunately at odds with the JPA specification which defines that all one-to-one and many-to-one
+        associations should be eagerly fetched by default.
+        Hibernate, as a JPA provider, honors that default.
+
+
+https://www.tutorialspoint.com/hibernate/hibernate_configuration.htm
+
+Installed JPA Buddy intellij plugin... https://www.jpa-buddy.com/#features
