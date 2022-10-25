@@ -14,10 +14,17 @@
          create the tables on every run-->
         <property name="hbm2ddl.auto">update</property>
 
+        <!-- will display in the console the SQLs that are sent to the DB..Good for debugging stuff -->
         <property name="show_sql">true</property>
 
-        <!-- List of XML mapping files
-        <mapping resource = "Employee.hbm.xml"/>-->
+        <!-- need to set this on true to have second level cache enabled -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">jcache</property>
+        <property name="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</property>
+        <property name="hibernate.javax.cache.uri">ehcache.xml</property>
+
+        <property name="hibernate.cache.use_query_cache">true</property>
+
 
     </session-factory>
 </hibernate-configuration>
