@@ -37,6 +37,9 @@ public class Main {
 
         session.getTransaction().commit();
 
+        session.close();
+        sf.close();
+
     }
 
     private static void insertStudentBookLaptopCourse(Session session) {
@@ -71,5 +74,7 @@ public class Main {
         session.save(student);
 
         session.getTransaction().commit();
+
+        session.close();
     }
 }

@@ -49,7 +49,7 @@ public class MainQuery {
 
         tx.commit();
         session2.close();
-
+        sessionFactory.close();
 
     }
 }

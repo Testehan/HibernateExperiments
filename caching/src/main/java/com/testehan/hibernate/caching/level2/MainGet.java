@@ -39,7 +39,7 @@ public class MainGet {
 
         tx.commit();
         session2.close();
-
+        sessionFactory.close();
 
     }
 }

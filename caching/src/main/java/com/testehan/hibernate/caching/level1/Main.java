@@ -39,5 +39,7 @@ public class Main {
 
         tx.commit();
         session2.close();
+
+        sf.close();
     }
 }
