@@ -1,7 +1,32 @@
 Hibernate Tutorial - Telusko
 https://www.youtube.com/watch?v=PMR0ld5h938&list=PLsyeobzWxl7qBZtsEvp_n2A7sJs2MpF3r
 
+    Regarding Level 2 cache hibernate
+        I used a newer version of ehcache lib (3.x) and because of this, I had to use a different hibernate lib, hibernate-jcache
+        and also I had to introduce a config file for ehcache called ehcache.xml.  Also the properties from hibernate.cfg.xml
+        regarding L2 caching are different than the tutorial, because of this.
 
+        By following the tutorial from the playlist, I got into a weird problem in which the execution of the program
+        would not stop. (hence I found out about some incompatibilities between what hibernate version I was using and
+        the ehcache version.)
+
+        The issue was fixed by following the instructions here :
+            https://northcoder.com/post/setting-up-hibernate-with-jcache-an/
+
+    https://www.baeldung.com/ehcache
+    https://stackoverflow.com/questions/72128029/how-do-i-resolve-could-not-find-artifact-javax-xml-bindjaxb-apipom2-3-0-b1611
+    https://www.baeldung.com/hibernate-second-level-cache
+        Conversely, a second-level cache is SessionFactory-scoped, meaning it's shared by all sessions created with
+        the same session factory.
+
+        We already mentioned that we have to explicitly indicate that a collection (OneToMany or ManyToMany
+        association) is cacheable, otherwise it isn't cached.
+
+   ResultTransformer has been deprecated. In Hibernate 6 it is replaced by some new interfaces. Until now an alternative
+   would be the suggestion from this page, https://vladmihalcea.com/hibernate-resulttransformer/ that I applied.
+
+   Persistent state ....detached state
+   https://stackoverflow.com/questions/70231095/object-in-persistent-state-dont-saved-to-the-database-but-successfully-loaded
 
 Entire documentation of hibernate 5.6.12
 https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/
@@ -21,3 +46,19 @@ https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/
 https://www.tutorialspoint.com/hibernate/hibernate_configuration.htm
 
 Installed JPA Buddy intellij plugin... https://www.jpa-buddy.com/#features
+
+
+Java Persistence with Hibernate 5 Fundamentals  @ Pluralsight
+
+
+https://www.digitalocean.com/community/tutorials/hibernate-sessionfactory
+https://stackoverflow.com/questions/8046662/hibernate-opensession-vs-getcurrentsession
+
+Todo examples with named queries : https://www.baeldung.com/hibernate-named-query
+
+TODO Do some exercises to better understand the n+1 selects problem ; get inspired from :
+https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping  from Vlad MIhalceas post
+TODO Hibernate Envers examples
+TODO Hibernate OGM used in NoSql cases...i think this is needed when using MongoDB
+
+TODO Nice to have Hibernate Search example
