@@ -23,6 +23,7 @@ public class Main {
 
         Alien alien = new Alien();
         alien.setColour("green");
+        alien.setWeightKg(100);
 
         long generatedId = (Long)session.save(alien);
         tx.commit();
