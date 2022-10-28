@@ -1,25 +1,23 @@
-package com.testehan.hibernate.basics.first;
+package com.testehan.hibernate.basics.first1;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "alien_table")
 public class Alien {
 
     @Id
-    private int alienId;
+    @GeneratedValue
+    private UUID alienId;
     @Transient
     private int notInDb;
     private AlienName name;
     @Column(name = "alien_colour")
     private String colour;
 
-    public int getAlienId() {
+    public UUID getAlienId() {
         return alienId;
-    }
-
-    public void setAlienId(int alienId) {
-        this.alienId = alienId;
     }
 
     public AlienName getName() {

@@ -1,9 +1,11 @@
-package com.testehan.hibernate.basics.first;
+package com.testehan.hibernate.basics.first1;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
+import java.util.UUID;
 
 public class Main {
 
@@ -22,7 +24,6 @@ public class Main {
         tx = session.beginTransaction();
 
         Alien alien = new Alien();
-        alien.setAlienId(2);
         AlienName name = new AlienName();
         name.setFirstName("Thanos");
         name.setLastName("Avenger");
@@ -30,11 +31,11 @@ public class Main {
         alien.setName(name);
         alien.setColour("green");
 
-        session.save(alien);
+        UUID generatedId = (UUID)session.save(alien);
         tx.commit();
 
-        Alien readFromDB = session.get(Alien.class,2);
-        System.out.println("Reading alien with id 2 from the DB " + readFromDB);
+        Alien readFromDB = session.get(Alien.class,generatedId);
+        System.out.println("Reading alien from the DB " + readFromDB);
 
         session.close();
 
@@ -61,7 +62,6 @@ public class Main {
         Transaction tx = session.beginTransaction();
 
         Alien alien = new Alien();
-        alien.setAlienId(1);
         alien.setColour("green");
         session.save(alien);
         // now the DB and the alien object will have the same value for colour
@@ -72,25 +72,24 @@ public class Main {
         // now the DB and the alien object will have the same value for colour
 
         // The hibernate session stores update actions until a commit occurs. since there is none after
-        // this line, alien color will remain green
+        // this line, alien color will remain purple in DB and black in java memory
         alien.setColour("black");
 
 
 
-        Alien readFromDB = session.get(Alien.class,1);
-        System.out.println("Reading alien with id 2 from the DB " + readFromDB);
+        Alien readFromDB = session.get(Alien.class, alien.getAlienId());
+        System.out.println("Reading alien from the DB " + readFromDB);
         // here the color in the DB will be "purple" and in the print from above it will be black, because
         // probably the object is held in hibernate memory and is retrieved from cache. hence it has one value
         // there, and another in the DB
 
         session.detach(alien);
-        readFromDB = session.get(Alien.class,1);
-        System.out.println("Reading alien with id 2 from the DB " + readFromDB);
+        readFromDB = session.get(Alien.class,alien.getAlienId());
+        System.out.println("Reading alien from the DB " + readFromDB);
         // here the color is "purple" because "black" was discarded when I called detach
 
 
         session.close();
-
 
     }
 }

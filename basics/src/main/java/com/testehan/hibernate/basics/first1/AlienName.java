@@ -1,4 +1,4 @@
-package com.testehan.hibernate.basics.first;
+package com.testehan.hibernate.basics.first1;
 
 import javax.persistence.Embeddable;
 
