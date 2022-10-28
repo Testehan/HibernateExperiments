@@ -14,6 +14,8 @@ public class Laptop {
         return laptopId;
     }
 
+    // Primary key values never change, so you shouldn’t allow modification of the identifier property value.
+    // this makes the examples easier but in productive code you shouldn't need a setter
     public void setLaptopId(int laptopId) {
         this.laptopId = laptopId;
     }

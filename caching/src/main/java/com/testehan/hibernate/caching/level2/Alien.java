@@ -22,10 +22,6 @@ public class Alien {
         return alienId;
     }
 
-    public void setAlienId(int alienId) {
-        this.alienId = alienId;
-    }
-
     public AlienName getName() {
         return name;
     }
