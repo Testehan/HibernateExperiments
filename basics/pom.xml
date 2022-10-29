@@ -17,35 +17,35 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <build>
-        <plugins>
+<!--    <build>-->
+<!--        <plugins>-->
 
-            <!-- purpose of this is to copy hibernate config file in the target folder from the parent module -->
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-hibernateConfig</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/classes</outputDirectory>
-                            <overwrite>true</overwrite>
-                            <resources>
-                                <resource>
-                                    <directory>../src/main/resources/</directory>
-                                    <includes>
-                                        <include>hibernate.cfg.xml</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+<!--            &lt;!&ndash; purpose of this is to copy hibernate config file in the target folder from the parent module &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <artifactId>maven-resources-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>copy-hibernateConfig</id>-->
+<!--                        <phase>generate-resources</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>copy-resources</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <outputDirectory>${project.build.directory}/classes</outputDirectory>-->
+<!--                            <overwrite>true</overwrite>-->
+<!--                            <resources>-->
+<!--                                <resource>-->
+<!--                                    <directory>../src/main/resources/</directory>-->
+<!--                                    <includes>-->
+<!--                                        <include>hibernate.cfg.xml</include>-->
+<!--                                    </includes>-->
+<!--                                </resource>-->
+<!--                            </resources>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 
 </project>
