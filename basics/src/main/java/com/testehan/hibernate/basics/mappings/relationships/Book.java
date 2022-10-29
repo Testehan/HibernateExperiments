@@ -1,4 +1,4 @@
-package com.testehan.hibernate.basics.mappings;
+package com.testehan.hibernate.basics.mappings.relationships;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

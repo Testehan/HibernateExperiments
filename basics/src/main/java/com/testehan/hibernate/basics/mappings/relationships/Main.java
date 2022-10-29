@@ -1,4 +1,4 @@
-package com.testehan.hibernate.basics.mappings;
+package com.testehan.hibernate.basics.mappings.relationships;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
