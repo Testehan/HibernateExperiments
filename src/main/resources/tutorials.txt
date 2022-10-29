@@ -42,6 +42,17 @@ https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/
         associations should be eagerly fetched by default.
         Hibernate, as a JPA provider, honors that default.
 
+        For implementing database sequence-based identifier value generation Hibernate makes use of its
+        org.hibernate.id.enhanced.SequenceStyleGenerator id generator. It is important to note that SequenceStyleGenerator
+        is capable of working against databases that do not support sequences by switching to a table as the underlying
+        backing. This gives Hibernate a huge degree of portability across databases while still maintaining consistent
+        id generation behavior (versus say choosing between SEQUENCE and IDENTITY). This backing storage is completely
+        transparent to the user.
+        The preferred (and portable) way to configure this generator is using the JPA-defined
+        javax.persistence.SequenceGenerator annotation.
+        The simplest form is to simply request sequence generation; Hibernate will use a single, implicitly-named
+        sequence (hibernate_sequence) for all such unnamed definitions.
+
 
 https://www.tutorialspoint.com/hibernate/hibernate_configuration.htm
 
@@ -50,11 +61,16 @@ Installed JPA Buddy intellij plugin... https://www.jpa-buddy.com/#features
 
 Java Persistence with Hibernate 5 Fundamentals  @ Pluralsight
 
+https://www.baeldung.com/java-package-info
+https://www.baeldung.com/hibernate-identifiers
 
 https://www.digitalocean.com/community/tutorials/hibernate-sessionfactory
 https://stackoverflow.com/questions/8046662/hibernate-opensession-vs-getcurrentsession
 
+TODO Basics Example with bean validation :(search in book notes for Applying Bean Validation Rules)
+
 Todo examples with named queries : https://www.baeldung.com/hibernate-named-query
+        (serch in the book notes for @org.hibernate.annotations.NamedQueries)
 
 TODO Do some exercises to better understand the n+1 selects problem ; get inspired from :
 https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping  from Vlad MIhalceas post
@@ -62,3 +78,4 @@ TODO Hibernate Envers examples
 TODO Hibernate OGM used in NoSql cases...i think this is needed when using MongoDB
 
 TODO Nice to have Hibernate Search example
+TODO Nice to have Externalizing metadata with XML files
