@@ -1,6 +1,11 @@
 package com.testehan.hibernate.basics.first3;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Table(name = "alien_table")
@@ -24,7 +29,6 @@ public class Alien {
             })
     private long alienId;
     @Column(name = "alien_colour")
-
     private String colour;
 
     // this transformer is usefull when your DB holds data representing something, and in the java app you want something else
@@ -35,7 +39,40 @@ public class Alien {
     )
     private int weightKg;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date", updatable = false)
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modify_date")
+    private Date modifyDate;
+
+    @Column(insertable = false)
+    @org.hibernate.annotations.ColumnDefault("1.00")
+    @org.hibernate.annotations.Generated(
+            org.hibernate.annotations.GenerationTime.INSERT
+    )
+    protected BigDecimal initialArmour;
+
     public Alien() {
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
     }
 
     public String getColour() {
@@ -60,6 +97,9 @@ public class Alien {
                 "alienId=" + alienId +
                 ", colour='" + colour + '\'' +
                 ", weightKg='" + weightKg + '\'' +
+                ", initialArmour='" + initialArmour + '\'' +
+                ", createDate='" + createDate + '\'' +
+                ", modifyDate='" + modifyDate + '\'' +
                 '}';
     }
 }

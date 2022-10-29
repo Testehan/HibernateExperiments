@@ -5,9 +5,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Date;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("Starting the Hibernate App");
 
         Configuration conf = new Configuration().configure().addAnnotatedClass(Alien.class);
@@ -26,6 +28,13 @@ public class Main {
         alien.setWeightKg(100);
 
         long generatedId = (Long)session.save(alien);
+        tx.commit();
+
+        tx = session.beginTransaction();
+        Thread.sleep(5000);
+        alien.setCreateDate(new Date()); // column will not update because i've set updatable = false; setter exists for demo purposes
+        alien.setModifyDate(new Date());
+
         tx.commit();
 
         Alien readFromDB = session.get(Alien.class,generatedId);
