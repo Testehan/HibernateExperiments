@@ -12,6 +12,7 @@
         <module>basics</module>
         <module>caching</module>
         <module>hql</module>
+        <module>jpa</module>
     </modules>
 
     <properties>
