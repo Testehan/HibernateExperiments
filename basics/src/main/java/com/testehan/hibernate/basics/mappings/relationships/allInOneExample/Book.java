@@ -1,7 +1,8 @@
-package com.testehan.hibernate.basics.mappings.relationships;
+package com.testehan.hibernate.basics.mappings.relationships.allInOneExample;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -11,7 +12,13 @@ public class Book {
     private int bookId;
     private String bookName;
     private String bookAuthor;
-    @ManyToOne  // using this annotation + (mappedBy = "student") (from Student class) will make the mapping happen in the book table with a new column, instead of a student_book table
+    // using this annotation + (mappedBy = "student") (from Student class) will make the mapping happen in the
+    // book table with a new column, instead of a student_book table
+    @ManyToOne
+    // You can override the foreign key column with the @JoinColumn annotation. We
+    // used it here for a different reason: to make the foreign key column NOT NULL when
+    //  Hibernate generates the SQL schema. A book always has to have a reference to an student (at least in our example);
+    @JoinColumn(name = "studentId", nullable = false)
     private Student student; // eager by default
 
     public Student getStudent() {
