@@ -2,10 +2,10 @@ package com.testehan.hibernate.jpa;
 
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /*
 Hibernate never needs to execute UPDATE statements on the Message table. Hibernate can also make a few other
@@ -21,8 +21,9 @@ public class Message {
     @Column(nullable = false)
     private String text;
 
-    // hibernate needs a default constructor; since we have a parameterized one, we need to explicitly
-    // declare de default one
+    @OneToMany(mappedBy = "message", fetch=FetchType.EAGER,  cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    private List<Attachment> attachments = new ArrayList();
+
     public Message() {}
 
     public Message(String text) {
@@ -33,11 +34,33 @@ public class Message {
         return text;
     }
 
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Message message = (Message) o;
+        return Objects.equals(id, message.id) && Objects.equals(text, message.text);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, text);
+    }
+
     @Override
     public String toString() {
         return "Message{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
+                ", attachments=" + attachments +
                 '}';
     }
 }

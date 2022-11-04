@@ -21,11 +21,19 @@ public class Main
         em.getTransaction().begin();
 
         Message message = new Message("Hello World!");
+        Attachment attachment = new Attachment();
+        attachment.setAttachmentFile("simple file.txt");
+        attachment.setMessage(message);
+        message.getAttachments().add(attachment);
+        Attachment attachment2 = new Attachment();
+        attachment2.setAttachmentFile("virus.exe");
+        attachment2.setMessage(message);
+        message.getAttachments().add(attachment2);
 
         // Hibernate now knows that you wish to store that data, but it doesn't necessarily call
         // the database immediately
         em.persist(message);
-
+        System.out.println(message);
 
         Message message2 = new Message();
         // next line will throw an exception PropertyValueException: not-null property references a null or
@@ -37,9 +45,13 @@ public class Main
         // Commit the transaction. Hibernate automatically checks the persistence context and
         // executes the necessary SQL INSERT statement.
         em.getTransaction().commit();
+
+
         em.close();
 
-        selectAndPrintAllMessages(entityManagerFactory);
+//        selectAndPrintAllMessages(entityManagerFactory);
+//        printAndDeleteAllMessagesAndAttachments(entityManagerFactory);
+        removingAttachmentFromListAlsoDeletesItFromDB(entityManagerFactory,attachment2);
     }
 
     private static void selectAndPrintAllMessages(EntityManagerFactory entityManagerFactory) {
@@ -52,6 +64,44 @@ public class Main
         for (Message m: messages) {
             System.out.println(m);
         }
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    /*
+    "This deletion process is inefficient: Hibernate must always load the collection and delete each Attachment individually.
+	A single SQL statement would have the same effect on the database: delete from BID where ITEM_ID = ?.
+	You know this because nobody in the database has a foreign key reference on the
+	BID table."
+     */
+    private static void printAndDeleteAllMessagesAndAttachments(final EntityManagerFactory entityManagerFactory) {
+
+        EntityManager em = entityManagerFactory.createEntityManager();
+
+        em.getTransaction().begin();
+
+        List<Message> messages = em.createQuery("from Message").getResultList();
+        for (Message m: messages) {
+            System.out.println(m);
+            em.remove(m);// because of  CascadeType.REMOVE set in Message on the list of Attachments, they will also be deleted
+        }
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    private static void removingAttachmentFromListAlsoDeletesItFromDB(final EntityManagerFactory entityManagerFactory, final Attachment attachment2) {
+
+        EntityManager em = entityManagerFactory.createEntityManager();
+
+        em.getTransaction().begin();
+
+        Message messages = (Message) em.createQuery("from Message").getSingleResult();
+        System.out.println(messages);
+        // because orphanRemoval = true when an obkect is removed from the list, it will also be removed from the DB
+        messages.getAttachments().remove(attachment2);
+        System.out.println(messages);
 
         em.getTransaction().commit();
         em.close();

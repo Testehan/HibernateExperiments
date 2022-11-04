@@ -42,7 +42,7 @@ public class Main
 
         usingResultTransformerForProcessingNativeQueryResults_printNamesAndMarksForBestStudents(sf);
 
-
+        sf.close();
     }
 
     private static void usingResultTransformerForProcessingNativeQueryResults_printNamesAndMarksForBestStudents(SessionFactory sf) {
