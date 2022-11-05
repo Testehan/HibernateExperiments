@@ -1,4 +1,4 @@
-package com.testehan.hibernate.basics.mappings.relationships;
+package com.testehan.hibernate.basics.mappings.relationships.allInOneExample;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,8 +16,9 @@ public class Main {
         SessionFactory sf = conf.buildSessionFactory();
         Session session = sf.openSession();
 
-//        insertStudentBookLaptopCourse(session);
+        insertStudentBookLaptopCourse(session);
 
+        session = sf.openSession() ;
         session.beginTransaction();
 
         Student student = session.get(Student.class,1);
@@ -25,6 +26,8 @@ public class Main {
         System.out.println(student.getLaptop());
         System.out.println(student.getBooks());
         System.out.println(student.getCourse());
+
+        session.delete(student);
 
 //        Book book = session.get(Book.class,1);
 //        System.out.println(book.getBookName());
@@ -69,9 +72,10 @@ public class Main {
         session.beginTransaction();
 
         session.save(course);
-        session.save(book1);
+        session.persist(student);       // by using persist instead of save, the  cascade = CascadeType.PERSIST works
+//        session.save(book1);          (book is persisted without saving the object explicitly on this line)
         session.save(laptop);
-        session.save(student);
+
 
         session.getTransaction().commit();
 

@@ -1,4 +1,4 @@
-package com.testehan.hibernate.basics.mappings.relationships;
+package com.testehan.hibernate.basics.mappings.relationships.allInOneExample;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,9 +13,13 @@ public class Student {
     private int mark;
     @OneToOne
     private Laptop laptop;      // eager by default
-    @OneToMany(mappedBy = "student", fetch=FetchType.EAGER) // LAZY by default need to specify
+    // see chapter "Making it bidirectional" from the book, which highlights the plusses and minusses of making this type
+    // of relationshio bidirectional (maybe the ManyToOne from Book class was enough if you don't intend to use Student.books..
+    // the relationship from Student's perspective could be replaced with a query)
+                                            // LAZY by default need to specify
+    @OneToMany(mappedBy = "student", fetch=FetchType.EAGER,  cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Book> books = new ArrayList();
-    @ManyToMany(mappedBy = "students")          // LAZY by default need to specify
+    @ManyToMany(mappedBy = "students", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})          // LAZY by default need to specify
     private List<Course> course = new ArrayList();
 
     public List<Course> getCourse() {
