@@ -32,17 +32,21 @@ public class Attachment {
         this.message = message;
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
+    public int getAttchmentId() {
+        return attchmentId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Attachment)) return false;
         Attachment that = (Attachment) o;
-        return attchmentId == that.attchmentId && Objects.equals(attachmentFile, that.attachmentFile) && Objects.equals(message, that.message);
+        return getAttchmentId() == that.getAttchmentId() && Objects.equals(getAttachmentFile(), that.getAttachmentFile()) && Objects.equals(getMessage(), that.getMessage());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAttchmentId(), getAttachmentFile(), getMessage());
     }
 
     @Override

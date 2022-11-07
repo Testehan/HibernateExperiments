@@ -2,6 +2,7 @@ package com.testehan.hibernate.basics.mappings.collections.setOfComponents;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -39,6 +40,14 @@ public class Alien {
         this.images.add(image);
     }
 
+    public long getAlienId() {
+        return alienId;
+    }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
     @Override
     public String toString() {
         return "Alien{" +
@@ -46,5 +55,18 @@ public class Alien {
                 ", colour='" + colour + '\'' +
                 ", images=" + images +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Alien)) return false;
+        Alien alien = (Alien) o;
+        return getAlienId() == alien.getAlienId() && Objects.equals(getColour(), alien.getColour()) && Objects.equals(getImages(), alien.getImages());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAlienId(), getColour(), getImages());
     }
 }

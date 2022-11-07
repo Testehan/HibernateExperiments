@@ -33,13 +33,13 @@ public class MonetaryAmount implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof MonetaryAmount)) return false;
         MonetaryAmount that = (MonetaryAmount) o;
-        return Objects.equals(value, that.value) && Objects.equals(currency, that.currency);
+        return Objects.equals(getValue(), that.getValue()) && Objects.equals(getCurrency(), that.getCurrency());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, currency);
+        return Objects.hash(getValue(), getCurrency());
     }
 }

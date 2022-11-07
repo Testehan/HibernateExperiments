@@ -65,13 +65,13 @@ public class Book {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Book)) return false;
         Book book = (Book) o;
-        return bookId == book.bookId && bookName.equals(book.bookName) && bookAuthor.equals(book.bookAuthor);
+        return getBookId() == book.getBookId() && Objects.equals(getBookName(), book.getBookName()) && Objects.equals(getBookAuthor(), book.getBookAuthor()) && Objects.equals(getBuyer(), book.getBuyer());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookId, bookName, bookAuthor);
+        return Objects.hash(getBookId(), getBookName(), getBookAuthor(), getBuyer());
     }
 }

@@ -57,13 +57,13 @@ public class Student {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Student)) return false;
         Student student = (Student) o;
-        return studentId == student.studentId && name.equals(student.name);
+        return getStudentId() == student.getStudentId() && Objects.equals(getName(), student.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(studentId, name);
+        return Objects.hash(getStudentId(), getName());
     }
 }

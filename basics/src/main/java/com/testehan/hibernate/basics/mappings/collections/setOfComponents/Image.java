@@ -60,14 +60,14 @@ public class Image {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Image)) return false;
         Image image = (Image) o;
-        return width == image.width && height == image.height && title.equals(image.title) && filename.equals(image.filename);
+        return getWidth() == image.getWidth() && getHeight() == image.getHeight() && Objects.equals(getTitle(), image.getTitle()) && Objects.equals(getFilename(), image.getFilename());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, filename, width, height);
+        return Objects.hash(getTitle(), getFilename(), getWidth(), getHeight());
     }
 
     @Override

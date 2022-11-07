@@ -39,7 +39,18 @@ public class Course {
         this.courseStudents = courseStudents;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Course)) return false;
+        Course course = (Course) o;
+        return getCourseId() == course.getCourseId() && Objects.equals(getName(), course.getName()) && Objects.equals(getCourseStudents(), course.getCourseStudents());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCourseId(), getName(), getCourseStudents());
+    }
 
     @Override
     public String toString() {
@@ -49,16 +60,5 @@ public class Course {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Course course = (Course) o;
-        return courseId == course.courseId && name.equals(course.name);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(courseId, name);
-    }
 }

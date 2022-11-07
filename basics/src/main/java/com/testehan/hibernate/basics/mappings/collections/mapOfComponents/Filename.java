@@ -45,14 +45,14 @@ public class Filename {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Filename)) return false;
         Filename filename = (Filename) o;
-        return name.equals(filename.name) && extension.equals(filename.extension);
+        return Objects.equals(getName(), filename.getName()) && Objects.equals(getExtension(), filename.getExtension());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, extension);
+        return Objects.hash(getName(), getExtension());
     }
 
     @Override

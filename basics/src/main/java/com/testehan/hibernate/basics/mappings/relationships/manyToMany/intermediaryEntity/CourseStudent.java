@@ -29,17 +29,25 @@ public class CourseStudent {
             this.studentId = studentId;
         }
 
+        public int getCourseId() {
+            return courseId;
+        }
+
+        public int getStudentId() {
+            return studentId;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (!(o instanceof Id)) return false;
             Id id = (Id) o;
-            return Objects.equals(courseId, id.courseId) && Objects.equals(studentId, id.studentId);
+            return getCourseId() == id.getCourseId() && getStudentId() == id.getStudentId();
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(courseId, studentId);
+            return Objects.hash(getCourseId(), getStudentId());
         }
     }
 
