@@ -1,7 +1,5 @@
 package com.testehan.hibernate.jpa;
 
-import org.hibernate.annotations.Immutable;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +10,7 @@ Hibernate never needs to execute UPDATE statements on the Message table. Hiberna
 optimizations, such as avoiding dirty checking, if you map an immutable class like below
 */
  @Entity
- @Immutable
+// @Immutable
 public class Message {
     @Id
     @GeneratedValue
@@ -30,8 +28,16 @@ public class Message {
         this.text = text;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getText() {
         return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public List<Attachment> getAttachments() {
@@ -45,14 +51,14 @@ public class Message {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Message)) return false;
         Message message = (Message) o;
-        return Objects.equals(id, message.id) && Objects.equals(text, message.text);
+        return Objects.equals(getId(), message.getId()) && Objects.equals(getText(), message.getText());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, text);
+        return Objects.hash(getId(), getText());
     }
 
     @Override
