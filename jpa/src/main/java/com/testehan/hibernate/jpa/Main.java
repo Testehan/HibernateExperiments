@@ -1,6 +1,7 @@
 package com.testehan.hibernate.jpa;
 
 import org.hibernate.Session;
+import org.hibernate.proxy.HibernateProxyHelper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -66,15 +67,17 @@ public class Main
                 entityManager.close();
         }
 
-           mergeMethod(entityManagerFactory,message);
+//           mergeMethod(entityManagerFactory,message);
 //        accessHibernateClasses(entityManagerFactory,messageId);
 //        refreshData(entityManagerFactory,messageId);
-//        findReferenceToMessageById(entityManagerFactory,messageId);
+        findReferenceToMessageById(entityManagerFactory,messageId);
 //        findMessageByIdAndChangeText(entityManagerFactory,messageId);
 //        printVariousStatesAnObjectIs(entityManagerFactory);
 //        selectAndPrintAllMessages(entityManagerFactory);
 //        printAndDeleteAllMessagesAndAttachments(entityManagerFactory);
 //        removingAttachmentFromListAlsoDeletesItFromDB(entityManagerFactory,attachment2);
+
+        entityManagerFactory.close();
     }
 
     private static void mergeMethod(EntityManagerFactory entityManagerFactory, Message detachedMessage) {
@@ -109,6 +112,8 @@ public class Main
             if (entityManager != null && entityManager.isOpen())
                 entityManager.close();
         }
+
+        entityManagerFactory.close();
     }
 
     // by using method unwrap you can access JPA implementation classes, in this case from hibernate
@@ -194,7 +199,23 @@ public class Main
             System.out.println("Message is not loaded : " + !persistenceUnitUtil.isLoaded(message));
             System.out.println("We actually get a hibernate proxy object, not our usuall Message typed object :" +message.getClass().getName());
             System.out.println("We can use however the id of the object for various things " + message.getId());
-            System.out.println("Message is loaded when you try to access other fields " + message);
+            System.out.println("You can get the actuall class of the object like this :" + HibernateProxyHelper.getClassWithoutInitializingProxy(message));
+            //System.out.println("Message is loaded when you try to access other fields, for example text field " + message.getText());
+            // OR
+//            Hibernate.initialize(message);
+//            System.out.println("Message was initialized programatically (quick-and-dirty)");
+//            System.out.println("Message info : " + message);
+
+            /*
+                The persist() call queues one SQL INSERT when the persistence context is flushed, and
+                no SELECT is necessary to create the new row in the Attachment table. All (foreign) key values
+                are available as identifier values of the Message proxy.
+             */
+            System.out.println("Creating a new attachment and setting the proxy to it, without needing a select");
+            Attachment attachment = new Attachment();
+            attachment.setAttachmentFile("file nr 3");
+            attachment.setMessage(message);
+            entityManager.persist(attachment);
 
             entityManager.getTransaction().commit();
 
