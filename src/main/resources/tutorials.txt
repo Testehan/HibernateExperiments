@@ -63,14 +63,37 @@ Java Persistence with Hibernate 5 Fundamentals  @ Pluralsight
 
 https://www.baeldung.com/java-package-info
 https://www.baeldung.com/hibernate-identifiers
+https://www.baeldung.com/hibernate-inheritance
+https://thorben-janssen.com/ordering-vs-sorting-hibernate-use/
+
+https://www.baeldung.com/hibernate-entitymanager
+    Container-Managed EntityManager             TODO would be nice to do this when you do container stuff (see below other TODOs about container)
+    Application-Managed EntityManager
+
+https://www.baeldung.com/jpa-entity-manager-get-reference
+https://thorben-janssen.com/jpa-getreference/
+
+https://stackoverflow.com/questions/1638723/how-should-equals-and-hashcode-be-implemented-when-using-jpa-and-hibernate
+    Very important to do the equals and hashcode in the right way, otherwise when using Sets you can run into problematic
+    scenarios (things to keep in mind: hibernate uses proxy objects, so getClass() is discouraged..see chapter
+    "Implementing equality methods" for more details)
 
 https://www.digitalocean.com/community/tutorials/hibernate-sessionfactory
 https://stackoverflow.com/questions/8046662/hibernate-opensession-vs-getcurrentsession
+
+https://vladmihalcea.com/optimistic-vs-pessimistic-locking/
+
+TODO Go through the following 2 articles related to transactions in java, and try to use the one from the tutorial:
+        (better to do this when you have a container...or you use spring mqaybe)
+    https://www.baeldung.com/java-transactions
+    https://www.baeldung.com/java-atomikos
 
 TODO Basics Example with bean validation :(search in book notes for Applying Bean Validation Rules)
 
 Todo examples with named queries : https://www.baeldung.com/hibernate-named-query
         (serch in the book notes for @org.hibernate.annotations.NamedQueries)
+
+TODO Example with CLOB BLOB ...
 
 TODO Do some exercises to better understand the n+1 selects problem ; get inspired from :
 https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping  from Vlad MIhalceas post
