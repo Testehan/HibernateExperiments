@@ -14,7 +14,7 @@
         <module>hql</module>
         <module>jpa</module>
         <module>transactions</module>
-<!--        <module>loading-fetch-optimizing</module>-->
+        <module>loading-fetch-optimizing</module>
     </modules>
 
     <properties>
