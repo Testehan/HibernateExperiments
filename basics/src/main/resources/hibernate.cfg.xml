@@ -12,7 +12,7 @@
 
         <!-- next property set on "update" will only update table if new fields are added. On "create" it will
          create the tables on every run-->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
 
         <!-- will display in the console the SQLs that are sent to the DB..Good for debugging stuff -->
         <property name="show_sql">true</property>
