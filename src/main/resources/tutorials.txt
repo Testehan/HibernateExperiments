@@ -95,8 +95,10 @@ Todo examples with named queries : https://www.baeldung.com/hibernate-named-quer
 
 TODO Example with CLOB BLOB ...
 
-TODO Do some exercises to better understand the n+1 selects problem ; get inspired from :
+
 https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping  from Vlad MIhalceas post
+https://stackoverflow.com/questions/4334970/hibernate-throws-multiplebagfetchexception-cannot-simultaneously-fetch-multipl
+
 TODO Hibernate Envers examples
 TODO Hibernate OGM used in NoSql cases...i think this is needed when using MongoDB
 
