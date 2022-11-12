@@ -41,7 +41,6 @@ public class Student1 {
         state; it can’t ignore the setting
      */
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-//    @org.hibernate.annotations.BatchSize(size = 10)  // See description in Notebook class
     private List<Notebook1> notebooks = new ArrayList();
 
     public List<Notebook1> getNotebooks() {
