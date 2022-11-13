@@ -15,6 +15,7 @@
         <module>jpa</module>
         <module>transactions</module>
         <module>loading-fetch-optimizing</module>
+        <module>filtering-data</module>
     </modules>
 
     <properties>
