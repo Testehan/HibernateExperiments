@@ -1,4 +1,4 @@
-package com.testehan.hibernate.jpa;
+package com.testehan.hibernate.entityManagerMethods;
 
 import org.hibernate.Session;
 import org.hibernate.proxy.HibernateProxyHelper;

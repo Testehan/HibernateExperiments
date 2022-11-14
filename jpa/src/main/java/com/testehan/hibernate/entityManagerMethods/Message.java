@@ -1,4 +1,4 @@
-package com.testehan.hibernate.jpa;
+package com.testehan.hibernate.entityManagerMethods;
 
 import javax.persistence.*;
 import java.util.ArrayList;
