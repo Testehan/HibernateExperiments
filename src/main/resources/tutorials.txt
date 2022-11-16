@@ -90,17 +90,13 @@ TODO Go through the following 2 articles related to transactions in java, and tr
 
 TODO Basics Example with bean validation :(search in book notes for Applying Bean Validation Rules)
 
-Todo examples with named queries : https://www.baeldung.com/hibernate-named-query
-        (serch in the book notes for @org.hibernate.annotations.NamedQueries)
-
 TODO Example with CLOB BLOB ...
 
 
 https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping  from Vlad MIhalceas post
 https://stackoverflow.com/questions/4334970/hibernate-throws-multiplebagfetchexception-cannot-simultaneously-fetch-multipl
 
-TODO Hibernate Envers examples
+
 TODO Hibernate OGM used in NoSql cases...i think this is needed when using MongoDB
 
 TODO Nice to have Hibernate Search example
-TODO Nice to have Externalizing metadata with XML files
