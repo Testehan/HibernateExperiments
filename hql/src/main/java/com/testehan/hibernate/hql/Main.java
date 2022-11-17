@@ -11,10 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-/**
- * Hello world!
- *
- */
 public class Main
 {
     public static void main( String[] args )
@@ -50,6 +46,8 @@ public class Main
             session.beginTransaction();
             // see tutorials file for more information about the deprecated ResultTransformer and ListResultTransformer was added
             NativeQuery query = session.createSQLQuery("select name,mark from student where mark > 90");
+            // If you don’t know the aliases used in the query and need to obtain them dynamically,
+            //  call org.hibernate.Query#getReturnAliases().
             query.setResultTransformer((ListResultTransformer) (tuples, aliases) ->
                     {
                         Map<String, Object> result = new HashMap();
