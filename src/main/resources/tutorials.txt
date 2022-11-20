@@ -85,6 +85,8 @@ https://vladmihalcea.com/optimistic-vs-pessimistic-locking/
 
 TODO Dao example
 
+TODO Hibernate + Writing a JAX-RS service example
+
 TODO Go through the following 2 articles related to transactions in java, and try to use the one from the tutorial:
         (better to do this when you have a container...or you use spring mqaybe)
     https://www.baeldung.com/java-transactions
