@@ -19,5 +19,6 @@
     </cache-template>
 
     <cache alias="com.testehan.hibernate.caching.level2.Alien" uses-template="simple"/>
+    <cache alias="com.testehan.hibernate.caching.level2.Weapon" uses-template="simple"/>
 
 </config>
