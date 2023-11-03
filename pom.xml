@@ -16,6 +16,7 @@
         <module>transactions</module>
         <module>loading-fetch-optimizing</module>
         <module>filtering-data</module>
+        <module>dao</module>
     </modules>
 
     <properties>
